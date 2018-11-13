@@ -1,0 +1,59 @@
+
+map f xs = if null xs then Nil
+                      else Cons (f (head xs)) (map f (tail xs));
+{-              
+fromTo n m = if n>m then Nil 
+                    else Cons n (fromTo (n+1) m);
+
+ls = Cons 1 (Cons 2 (Cons 3 Nil));
+
+ls2 = [1,2,3];
+
+inc x = x+1;
+
+lss = [[1,2],[3,4]];
+
+mod b a = if b>a then a else strict (mod b) (a-b);
+
+div b a = if b>a then 0 else 1 + strict (div b) (a-b);
+
+divMod a b = (div b a, mod b a);
+
+--main = [(1,2),(4,5,6),7,8,9]
+-}
+--main = map inc (fromTo 1 5)
+
+--main = divMod 11 3
+
+--main = map ord ['a','b','c']
+
+--main = map toUpper ['a','!','c']
+
+--main = map toUpper "hola!"
+
+chars = aux 0 255;
+
+aux x max = if x > max then Nil else Cons (chr x) (aux (x+3) max);
+
+--main = chars
+
+from n = Cons n (from (n+1));
+
+sum xs = if null xs then 0 else (head xs) + sum (tail xs);
+
+take n xs = if (n==0 | null xs) then Nil
+                                else Cons (head xs) (take (n-1) (tail xs));
+
+
+fromTo n m = if n > m then Nil else Cons n (fromTo (n+1) m);
+
+--main = sum (take 150 (from 1))
+
+main = sum (fromTo 1 5000)
+
+
+
+
+
+
+

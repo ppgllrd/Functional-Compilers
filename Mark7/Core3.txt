@@ -1,0 +1,2 @@
+f x y = y;
+main = I (f 1) 4

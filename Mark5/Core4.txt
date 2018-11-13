@@ -1,0 +1,8 @@
+-- Accumulators
+
+f n    = if (n==0) 0 (1 + f (n-1));
+
+f2 n x = if (n==0) x (f2 (n-1) (x+1));
+
+
+main = f2 11 0

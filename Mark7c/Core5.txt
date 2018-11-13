@@ -1,0 +1,66 @@
+
+Nil       = Pack {3, 0};
+Cons x xs = Pack {4, 2} x xs;
+
+
+from x = Cons x (from (x+1));
+
+replicate n x = if (n==0) Nil (Cons x (replicate (n-1) x));
+
+length xs = case xs of {
+              <3>      -> 0;
+	      <4> y ys -> 1 + length ys
+            };
+
+take n xs = if (n==0) Nil
+            (case xs of {
+               <3>      -> Nil;
+	       <4> y ys -> Cons y (take (n-1) ys)
+             });
+
+
+triple a b c = Pack {100, 3} a b c;
+
+
+ls = Cons 1 (Cons 2 (Cons 3 Nil));
+
+--main = replicate 3 (triple 10 20 30)
+
+--main = take 10 (from 1);
+
+
+--main =  I (if False 10 20)
+
+--main =  I (case Nil of {<1>->1;<2> y ys -> 2});
+
+map f xs = case xs of {
+             <3>      -> Nil;
+             <4> y ys -> Cons (f y) (map f ys)
+           };
+
+--main = map (triple 100 200) (take 50 (from 1));
+
+main = negate 10;
+
+--main = 3*4+5;
+
+--main = letrec { x = 1; y = x+2 } in 2*y + x;
+
+f x = x;
+
+
+aux ls = case ls of {
+          <3>       -> 0;
+          <4> y  ys -> 1
+         }
+
+--main = f (aux ls)
+
+--main = if (let {x = True} in x) 1 2
+       
+
+         
+
+
+		
+

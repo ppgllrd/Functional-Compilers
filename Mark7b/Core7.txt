@@ -1,0 +1,47 @@
+-- Using strict
+
+suma a b = a + b;
+
+prod a b = a * b;
+
+
+{- Version normal
+120
+Steps taken = 254
+Heap nodes allocated = 33
+Maximum sstack length = 5
+Maximum vstack length = 3
+Maximum dump length = 9   
+-}
+fact0 n = if n==0 then 1
+                  else n * fact0 (n-1);
+
+{- Versión estricta, operador * conocido y estricto. Muy Eficiente                  
+120
+Steps taken = 176
+Heap nodes allocated = 18
+Maximum sstack length = 4
+Maximum vstack length = 2
+Maximum dump length = 8    
+-}
+fact1 n = if n==0 then 1
+                  else n * strict fact1 (n-1);
+
+{- Operador f desconocido. Menos eficiente que la original
+   strict no está en contexto estricto
+120
+Steps taken = 487
+Heap nodes allocated = 69
+Maximum sstack length = 6
+Maximum vstack length = 2
+Maximum dump length = 23    
+-}                 
+fact2 f n = if n==0 then 1
+                    else f n (strict (fact2 f) (n-1));                 
+
+
+f x = 100;
+
+bottom = bottom;
+
+main = fact3 prod 5

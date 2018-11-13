@@ -1,0 +1,99 @@
+--------------------------------------------
+-- Prelude file for the Language
+-- 
+-- Important: See files CoreLex.hs and ConstrTags.hs
+--
+-- José E. Gallardo, December 1997
+--------------------------------------------
+
+I  x           = x;
+K  x y         = x;
+K1 x y         = y;
+S  f g x       = f x (g x);
+compose f g x  = f (g x);
+twice f        = compose f f;
+
+
+error = error;
+
+--------------------------------
+-- Strict primitive:
+--------------------------------
+
+-- seq bottom b = bottom
+-- seq a      b = b  
+
+strict f x = seq x (f x);
+
+----------------
+-- Booleans
+----------------
+
+False = Pack {1, 0};
+True  = Pack {2, 0};
+
+not b = case b of {
+         <1> -> True;
+         <2> -> False
+        };
+       
+-- &  :: Bool -> Bool -> Bool
+-- |  :: Bool -> Bool -> Bool
+-- if :: Bool -> a -> a -> a
+        
+----------------
+-- Integers
+----------------
+
+-- +      :: Int -> Int -> Int
+-- -      :: Int -> Int -> Int       
+-- *      :: Int -> Int -> Int
+-- /      :: Int -> Int -> Int
+-- <      :: Int -> Int -> Bool
+-- <=     :: Int -> Int -> Bool
+-- >      :: Int -> Int -> Bool
+-- >=     :: Int -> Int -> Bool
+-- ==     :: Int -> Int -> Bool
+-- ~=     :: Int -> Int -> Bool
+-- negate :: Int -> Int
+
+----------------
+-- Lists
+----------------
+
+Nil       = Pack {3, 0};
+Cons x xs = Pack {4, 2} x xs;
+
+head xs = case xs of {
+            <3>      -> error;
+            <4> y ys -> y
+          };
+          
+tail xs = case xs of {
+            <3>      -> error;
+            <4> y ys -> ys
+          };
+         
+null xs = case xs of {
+            <3>      -> True;
+            <4> y ys -> False
+          };
+          
+----------------
+-- Tuples
+----------------
+
+Tuple2 a b = Pack {5, 2} a b;
+
+fst t = case t of {
+          <5> a b -> a
+        };
+        
+snd t = case t of {
+          <5> a b -> b
+        };
+        
+        
+Tuple3 a b c = Pack {6, 3} a b c
+        
+

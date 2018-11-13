@@ -1,0 +1,32 @@
+map f xs = if null xs then Nil
+                      else Cons (f (head xs)) (map f (tail xs));
+              
+fromTo n m = if n>m then Nil 
+                    else Cons n (fromTo (n+1) m);
+
+ls = Cons 1 (Cons 2 (Cons 3 Nil));
+
+ls2 = [1,2,3];
+
+inc x = x+1;
+
+lss = [[1,2],[3,4]];
+
+mod b a = if b>a then a else strict (mod b) (a-b);
+
+div b a = if b>a then 0 else 1 + strict (div b) (a-b);
+
+divMod a b = (div b a, mod b a);
+
+--main = [(1,2),(4,5,6),7,8,9]
+
+--main = map inc (fromTo 1 5)
+
+main = divMod 11 3
+
+
+
+
+
+
+

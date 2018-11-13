@@ -1,0 +1,15 @@
+map f xs = if null xs then Nil
+                      else Cons (f (head xs)) (map f (tail xs));
+
+take n xs = if (n==0) then Nil
+                      else if null xs then Nil
+				      else Cons (head xs) (take (n-1) (tail xs));
+
+from n = Cons n (from (n+1));
+
+suc x = x + 1;
+
+main = take 5 (map suc (from 10))
+
+
+

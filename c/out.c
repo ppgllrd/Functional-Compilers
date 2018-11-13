@@ -1,0 +1,1049 @@
+/* Supercombinators declarations */
+ScDecl(_primBoolAnd)
+ScDecl(_primIntMul)
+ScDecl(_primIntAdd)
+ScDecl(_primIntSub)
+ScDecl(_primIntDiv)
+ScDecl(_primIntLT)
+ScDecl(_primIntLE)
+ScDecl(_primIntEQT)
+ScDecl(_primIntGT)
+ScDecl(_primIntGE)
+ScDecl(_Cons)
+ScDecl(_False)
+ScDecl(_I)
+ScDecl(_K)
+ScDecl(_K1)
+ScDecl(_Nil)
+ScDecl(_S)
+ScDecl(_True)
+ScDecl(_Tuple2)
+ScDecl(_Tuple3)
+ScDecl(_chr)
+ScDecl(_compose)
+ScDecl(_error)
+ScDecl(_filter)
+ScDecl(_fst)
+ScDecl(_head)
+ScDecl(_if)
+ScDecl(_isLower)
+ScDecl(_isUpper)
+ScDecl(_main)
+ScDecl(_negate)
+ScDecl(_nonMultiple)
+ScDecl(_not)
+ScDecl(_null)
+ScDecl(_nums)
+ScDecl(_oddsFrom)
+ScDecl(_ord)
+ScDecl(_primes)
+ScDecl(_seq)
+ScDecl(_sieve)
+ScDecl(_snd)
+ScDecl(_strict)
+ScDecl(_sum)
+ScDecl(_tail)
+ScDecl(_take)
+ScDecl(_toLower)
+ScDecl(_toUpper)
+ScDecl(_twice)
+ScDecl(_primBoolOr)
+ScDecl(_primIntNEQT)
+
+
+/* Supercombinators definitions */
+ScDefn(_primBoolAnd){
+  Rearrange(2)
+  Push(0)
+  Eval
+  BeginCasejump
+    BeginLabel(1) {
+      Split(0)
+      Pushglobal(_False)
+      Eval
+      Update(2)
+      Pop(2)
+      Unwind
+    }
+    EndLabel
+    BeginLabel(2) {
+      Split(0)
+      Push(1)
+      Eval
+      Update(2)
+      Pop(2)
+      Unwind
+    }
+    EndLabel
+    
+  EndCasejump
+}
+
+ScDefn(_primIntMul){
+  Rearrange(2)
+  Push(1)
+  Eval
+  Get
+  Push(0)
+  Eval
+  Get
+  IMul
+  Mkint
+  Update(2)
+  Pop(2)
+  Unwind
+}
+
+ScDefn(_primIntAdd){
+  Rearrange(2)
+  Push(1)
+  Eval
+  Get
+  Push(0)
+  Eval
+  Get
+  IAdd
+  Mkint
+  Update(2)
+  Pop(2)
+  Unwind
+}
+
+ScDefn(_primIntSub){
+  Rearrange(2)
+  Push(1)
+  Eval
+  Get
+  Push(0)
+  Eval
+  Get
+  ISub
+  Mkint
+  Update(2)
+  Pop(2)
+  Unwind
+}
+
+ScDefn(_primIntDiv){
+  Rearrange(2)
+  Push(1)
+  Eval
+  Get
+  Push(0)
+  Eval
+  Get
+  IDiv
+  Mkint
+  Update(2)
+  Pop(2)
+  Unwind
+}
+
+ScDefn(_primIntLT){
+  Rearrange(2)
+  Push(1)
+  Eval
+  Get
+  Push(0)
+  Eval
+  Get
+  ILT
+  Mkbool
+  Update(2)
+  Pop(2)
+  Unwind
+}
+
+ScDefn(_primIntLE){
+  Rearrange(2)
+  Push(1)
+  Eval
+  Get
+  Push(0)
+  Eval
+  Get
+  ILE
+  Mkbool
+  Update(2)
+  Pop(2)
+  Unwind
+}
+
+ScDefn(_primIntEQT){
+  Rearrange(2)
+  Push(1)
+  Eval
+  Get
+  Push(0)
+  Eval
+  Get
+  IEQT
+  Mkbool
+  Update(2)
+  Pop(2)
+  Unwind
+}
+
+ScDefn(_primIntGT){
+  Rearrange(2)
+  Push(1)
+  Eval
+  Get
+  Push(0)
+  Eval
+  Get
+  IGT
+  Mkbool
+  Update(2)
+  Pop(2)
+  Unwind
+}
+
+ScDefn(_primIntGE){
+  Rearrange(2)
+  Push(1)
+  Eval
+  Get
+  Push(0)
+  Eval
+  Get
+  IGE
+  Mkbool
+  Update(2)
+  Pop(2)
+  Unwind
+}
+
+ScDefn(_Cons){
+  Rearrange(2)
+  Push(1)
+  Push(1)
+  Pack(4,2)
+  Eval
+  Update(2)
+  Pop(2)
+  Unwind
+}
+
+ScDefn(_False){
+  Pack(1,0)
+  Eval
+  Update(0)
+  Pop(0)
+  Unwind
+}
+
+ScDefn(_I){
+  Rearrange(1)
+  Push(0)
+  Eval
+  Update(1)
+  Pop(1)
+  Unwind
+}
+
+ScDefn(_K){
+  Rearrange(2)
+  Push(0)
+  Eval
+  Update(2)
+  Pop(2)
+  Unwind
+}
+
+ScDefn(_K1){
+  Rearrange(2)
+  Push(1)
+  Eval
+  Update(2)
+  Pop(2)
+  Unwind
+}
+
+ScDefn(_Nil){
+  Pack(3,0)
+  Eval
+  Update(0)
+  Pop(0)
+  Unwind
+}
+
+ScDefn(_S){
+  Rearrange(3)
+  Push(2)
+  Push(2)
+  Mkap
+  Push(3)
+  Push(2)
+  Mkap
+  Mkap
+  Eval
+  Update(3)
+  Pop(3)
+  Unwind
+}
+
+ScDefn(_True){
+  Pack(2,0)
+  Eval
+  Update(0)
+  Pop(0)
+  Unwind
+}
+
+ScDefn(_Tuple2){
+  Rearrange(2)
+  Push(1)
+  Push(1)
+  Pack(5,2)
+  Eval
+  Update(2)
+  Pop(2)
+  Unwind
+}
+
+ScDefn(_Tuple3){
+  Rearrange(3)
+  Push(2)
+  Push(2)
+  Push(2)
+  Pack(6,3)
+  Eval
+  Update(3)
+  Pop(3)
+  Unwind
+}
+
+ScDefn(_chr){
+  Rearrange(1)
+  Push(0)
+  Eval
+  Get
+  CChr
+  Mkchar
+  Update(1)
+  Pop(1)
+  Unwind
+}
+
+ScDefn(_compose){
+  Rearrange(3)
+  Push(2)
+  Push(2)
+  Mkap
+  Push(1)
+  Mkap
+  Eval
+  Update(3)
+  Pop(3)
+  Unwind
+}
+
+ScDefn(_error){
+  Pushglobal(_error)
+  Eval
+  Update(0)
+  Pop(0)
+  Unwind
+}
+
+ScDefn(_filter){
+  Rearrange(2)
+  Push(1)
+  Pushglobal(_null)
+  Mkap
+  Eval
+  Get
+  BeginCond
+    BeginLabel(TagTrue) 
+    {
+      Pushglobal(_Nil)
+      Eval
+      Update(2)
+      Pop(2)
+      Unwind
+    }
+    EndLabel
+    BeginLabel(TagFalse)
+    {
+      Alloc(3)
+      Push(4)
+      Pushglobal(_head)
+      Mkap
+      Update(2)
+      Push(4)
+      Pushglobal(_tail)
+      Mkap
+      Update(1)
+      Push(1)
+      Push(4)
+      Pushglobal(_filter)
+      Mkap
+      Mkap
+      Update(0)
+      Push(2)
+      Push(4)
+      Mkap
+      Eval
+      Get
+      BeginCond
+        BeginLabel(TagTrue) 
+        {
+          Push(0)
+          Push(3)
+          Pushglobal(_Cons)
+          Mkap
+          Mkap
+          Eval
+          Update(5)
+          Pop(5)
+          Unwind
+        }
+        EndLabel
+        BeginLabel(TagFalse)
+        {
+          Push(0)
+          Eval
+          Update(5)
+          Pop(5)
+          Unwind
+        }
+        EndLabel
+      EndCond
+    }
+    EndLabel
+  EndCond
+}
+
+ScDefn(_fst){
+  Rearrange(1)
+  Push(0)
+  Eval
+  BeginCasejump
+    BeginLabel(5) {
+      Split(2)
+      Push(0)
+      Eval
+      Update(3)
+      Pop(3)
+      Unwind
+    }
+    EndLabel
+    
+  EndCasejump
+}
+
+ScDefn(_head){
+  Rearrange(1)
+  Push(0)
+  Eval
+  BeginCasejump
+    BeginLabel(3) {
+      Split(0)
+      Pushglobal(_error)
+      Eval
+      Update(1)
+      Pop(1)
+      Unwind
+    }
+    EndLabel
+    BeginLabel(4) {
+      Split(2)
+      Push(0)
+      Eval
+      Update(3)
+      Pop(3)
+      Unwind
+    }
+    EndLabel
+    
+  EndCasejump
+}
+
+ScDefn(_if){
+  Rearrange(3)
+  Push(0)
+  Eval
+  Get
+  BeginCond
+    BeginLabel(TagTrue) 
+    {
+      Push(1)
+      Eval
+      Update(3)
+      Pop(3)
+      Unwind
+    }
+    EndLabel
+    BeginLabel(TagFalse)
+    {
+      Push(2)
+      Eval
+      Update(3)
+      Pop(3)
+      Unwind
+    }
+    EndLabel
+  EndCond
+}
+
+ScDefn(_isLower){
+  Rearrange(1)
+  Pushchar('z')
+  Pushglobal(_ord)
+  Mkap
+  Push(1)
+  Pushglobal(_ord)
+  Mkap
+  Pushglobal(_primIntLE)
+  Mkap
+  Mkap
+  Pushchar('a')
+  Pushglobal(_ord)
+  Mkap
+  Push(2)
+  Pushglobal(_ord)
+  Mkap
+  Pushglobal(_primIntGE)
+  Mkap
+  Mkap
+  Pushglobal(_primBoolAnd)
+  Mkap
+  Mkap
+  Eval
+  Update(1)
+  Pop(1)
+  Unwind
+}
+
+ScDefn(_isUpper){
+  Rearrange(1)
+  Pushchar('Z')
+  Pushglobal(_ord)
+  Mkap
+  Push(1)
+  Pushglobal(_ord)
+  Mkap
+  Pushglobal(_primIntLE)
+  Mkap
+  Mkap
+  Pushchar('A')
+  Pushglobal(_ord)
+  Mkap
+  Push(2)
+  Pushglobal(_ord)
+  Mkap
+  Pushglobal(_primIntGE)
+  Mkap
+  Mkap
+  Pushglobal(_primBoolAnd)
+  Mkap
+  Mkap
+  Eval
+  Update(1)
+  Pop(1)
+  Unwind
+}
+
+ScDefn(_main){
+  Pushglobal(_primes)
+  Pushint(200)
+  Pushglobal(_take)
+  Mkap
+  Mkap
+  Eval
+  Update(0)
+  Pop(0)
+  Unwind
+}
+
+ScDefn(_negate){
+  Rearrange(1)
+  Push(0)
+  Eval
+  Get
+  INegate
+  Mkint
+  Update(1)
+  Pop(1)
+  Unwind
+}
+
+ScDefn(_nonMultiple){
+  Rearrange(2)
+  Push(1)
+  Eval
+  Get
+  Push(0)
+  Eval
+  Get
+  Push(0)
+  Eval
+  Get
+  Push(1)
+  Eval
+  Get
+  IDiv
+  IMul
+  INEQT
+  Mkbool
+  Update(2)
+  Pop(2)
+  Unwind
+}
+
+ScDefn(_not){
+  Rearrange(1)
+  Push(0)
+  Eval
+  BeginCasejump
+    BeginLabel(1) {
+      Split(0)
+      Pushglobal(_True)
+      Eval
+      Update(1)
+      Pop(1)
+      Unwind
+    }
+    EndLabel
+    BeginLabel(2) {
+      Split(0)
+      Pushglobal(_False)
+      Eval
+      Update(1)
+      Pop(1)
+      Unwind
+    }
+    EndLabel
+    
+  EndCasejump
+}
+
+ScDefn(_null){
+  Rearrange(1)
+  Push(0)
+  Eval
+  BeginCasejump
+    BeginLabel(3) {
+      Split(0)
+      Pushglobal(_True)
+      Eval
+      Update(1)
+      Pop(1)
+      Unwind
+    }
+    EndLabel
+    BeginLabel(4) {
+      Split(2)
+      Pushglobal(_False)
+      Eval
+      Update(3)
+      Pop(3)
+      Unwind
+    }
+    EndLabel
+    
+  EndCasejump
+}
+
+ScDefn(_nums){
+  Pushint(3)
+  Pushglobal(_oddsFrom)
+  Mkap
+  Pushint(2)
+  Pushglobal(_Cons)
+  Mkap
+  Mkap
+  Eval
+  Update(0)
+  Pop(0)
+  Unwind
+}
+
+ScDefn(_oddsFrom){
+  Rearrange(1)
+  Pushint(2)
+  Push(1)
+  Pushglobal(_primIntAdd)
+  Mkap
+  Mkap
+  Pushglobal(_oddsFrom)
+  Mkap
+  Push(1)
+  Pushglobal(_Cons)
+  Mkap
+  Mkap
+  Eval
+  Update(1)
+  Pop(1)
+  Unwind
+}
+
+ScDefn(_ord){
+  Rearrange(1)
+  Push(0)
+  Eval
+  Get
+  COrd
+  Mkint
+  Update(1)
+  Pop(1)
+  Unwind
+}
+
+ScDefn(_primes){
+  Pushglobal(_nums)
+  Pushglobal(_sieve)
+  Mkap
+  Eval
+  Update(0)
+  Pop(0)
+  Unwind
+}
+
+ScDefn(_seq){
+  Rearrange(2)
+  Push(0)
+  Eval
+  Push(2)
+  Eval
+  Update(2)
+  Pop(2)
+  Unwind
+}
+
+ScDefn(_sieve){
+  Rearrange(1)
+  Push(0)
+  Pushglobal(_null)
+  Mkap
+  Eval
+  Get
+  BeginCond
+    BeginLabel(TagTrue) 
+    {
+      Pushglobal(_Nil)
+      Eval
+      Update(1)
+      Pop(1)
+      Unwind
+    }
+    EndLabel
+    BeginLabel(TagFalse)
+    {
+      Push(0)
+      Pushglobal(_head)
+      Mkap
+      Push(1)
+      Pushglobal(_tail)
+      Mkap
+      Push(0)
+      Push(2)
+      Pushglobal(_nonMultiple)
+      Mkap
+      Pushglobal(_filter)
+      Mkap
+      Mkap
+      Pushglobal(_sieve)
+      Mkap
+      Push(2)
+      Pushglobal(_Cons)
+      Mkap
+      Mkap
+      Eval
+      Update(3)
+      Pop(3)
+      Unwind
+    }
+    EndLabel
+  EndCond
+}
+
+ScDefn(_snd){
+  Rearrange(1)
+  Push(0)
+  Eval
+  BeginCasejump
+    BeginLabel(5) {
+      Split(2)
+      Push(1)
+      Eval
+      Update(3)
+      Pop(3)
+      Unwind
+    }
+    EndLabel
+    
+  EndCasejump
+}
+
+ScDefn(_strict){
+  Rearrange(2)
+  Push(1)
+  Push(1)
+  Mkap
+  Push(2)
+  Pushglobal(_seq)
+  Mkap
+  Mkap
+  Eval
+  Update(2)
+  Pop(2)
+  Unwind
+}
+
+ScDefn(_sum){
+  Rearrange(1)
+  Push(0)
+  Pushglobal(_null)
+  Mkap
+  Eval
+  Get
+  BeginCond
+    BeginLabel(TagTrue) 
+    {
+      Pushint(0)
+      Update(1)
+      Pop(1)
+      Unwind
+    }
+    EndLabel
+    BeginLabel(TagFalse)
+    {
+      Push(0)
+      Pushglobal(_tail)
+      Mkap
+      Pushglobal(_sum)
+      Mkap
+      Eval
+      Get
+      Push(0)
+      Pushglobal(_head)
+      Mkap
+      Eval
+      Get
+      IAdd
+      Mkint
+      Update(1)
+      Pop(1)
+      Unwind
+    }
+    EndLabel
+  EndCond
+}
+
+ScDefn(_tail){
+  Rearrange(1)
+  Push(0)
+  Eval
+  BeginCasejump
+    BeginLabel(3) {
+      Split(0)
+      Pushglobal(_error)
+      Eval
+      Update(1)
+      Pop(1)
+      Unwind
+    }
+    EndLabel
+    BeginLabel(4) {
+      Split(2)
+      Push(1)
+      Eval
+      Update(3)
+      Pop(3)
+      Unwind
+    }
+    EndLabel
+    
+  EndCasejump
+}
+
+ScDefn(_take){
+  Rearrange(2)
+  Push(1)
+  Pushglobal(_null)
+  Mkap
+  Pushint(0)
+  Push(2)
+  Pushglobal(_primIntEQT)
+  Mkap
+  Mkap
+  Pushglobal(_primBoolOr)
+  Mkap
+  Mkap
+  Eval
+  Get
+  BeginCond
+    BeginLabel(TagTrue) 
+    {
+      Pushglobal(_Nil)
+      Eval
+      Update(2)
+      Pop(2)
+      Unwind
+    }
+    EndLabel
+    BeginLabel(TagFalse)
+    {
+      Push(1)
+      Pushglobal(_tail)
+      Mkap
+      Pushint(1)
+      Push(2)
+      Pushglobal(_primIntSub)
+      Mkap
+      Mkap
+      Pushglobal(_take)
+      Mkap
+      Mkap
+      Push(2)
+      Pushglobal(_head)
+      Mkap
+      Pushglobal(_Cons)
+      Mkap
+      Mkap
+      Eval
+      Update(2)
+      Pop(2)
+      Unwind
+    }
+    EndLabel
+  EndCond
+}
+
+ScDefn(_toLower){
+  Rearrange(1)
+  Push(0)
+  Pushglobal(_isUpper)
+  Mkap
+  Eval
+  Get
+  BeginCond
+    BeginLabel(TagTrue) 
+    {
+      Pushbasic(BasicChar('a'))
+      COrd
+      Pushbasic(BasicChar('A'))
+      COrd
+      Push(0)
+      Eval
+      Get
+      COrd
+      ISub
+      IAdd
+      CChr
+      Mkchar
+      Update(1)
+      Pop(1)
+      Unwind
+    }
+    EndLabel
+    BeginLabel(TagFalse)
+    {
+      Push(0)
+      Eval
+      Update(1)
+      Pop(1)
+      Unwind
+    }
+    EndLabel
+  EndCond
+}
+
+ScDefn(_toUpper){
+  Rearrange(1)
+  Push(0)
+  Pushglobal(_isLower)
+  Mkap
+  Eval
+  Get
+  BeginCond
+    BeginLabel(TagTrue) 
+    {
+      Pushbasic(BasicChar('A'))
+      COrd
+      Pushbasic(BasicChar('a'))
+      COrd
+      Push(0)
+      Eval
+      Get
+      COrd
+      ISub
+      IAdd
+      CChr
+      Mkchar
+      Update(1)
+      Pop(1)
+      Unwind
+    }
+    EndLabel
+    BeginLabel(TagFalse)
+    {
+      Push(0)
+      Eval
+      Update(1)
+      Pop(1)
+      Unwind
+    }
+    EndLabel
+  EndCond
+}
+
+ScDefn(_twice){
+  Rearrange(1)
+  Push(0)
+  Push(1)
+  Pushglobal(_compose)
+  Mkap
+  Mkap
+  Eval
+  Update(1)
+  Pop(1)
+  Unwind
+}
+
+ScDefn(_primBoolOr){
+  Rearrange(2)
+  Push(0)
+  Eval
+  BeginCasejump
+    BeginLabel(1) {
+      Split(0)
+      Push(1)
+      Eval
+      Update(2)
+      Pop(2)
+      Unwind
+    }
+    EndLabel
+    BeginLabel(2) {
+      Split(0)
+      Pushglobal(_True)
+      Eval
+      Update(2)
+      Pop(2)
+      Unwind
+    }
+    EndLabel
+    
+  EndCasejump
+}
+
+ScDefn(_primIntNEQT){
+  Rearrange(2)
+  Push(1)
+  Eval
+  Get
+  Push(0)
+  Eval
+  Get
+  INEQT
+  Mkbool
+  Update(2)
+  Pop(2)
+  Unwind
+}
+
+
+

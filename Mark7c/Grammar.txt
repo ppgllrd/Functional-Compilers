@@ -1,0 +1,81 @@
+-------------------------------------------------
+--
+-- A grammar for the lenguage defined in
+--
+-- "Implementing Functional Languajes"
+-- S. Peyton Jones and D. Lester
+--
+-- José E. Gallardo, December 1997
+-------------------------------------------------
+
+
+program -> sc1 ; ... ; scn                              n>=1
+
+sc      -> var var1 ... varn tkEq expr0                 n>=0
+
+expr0 -> letExpr                                        Local definitions
+      |  letrecExpr                                     Recursive local definitions
+      |  caseExpr                                       Case expressions
+      |  ifExpr						If expressions
+      |  lambdaExpr                                     Lambda Abstraction
+      |  expr1                                          Other expressions
+
+
+letExpr    -> tkLet tkOCB defns tkCCB tkIn expr0
+
+letrecExpr -> tkLetrec tkOCB defns tkCCB tkIn expr0
+
+ifExpression -> tkIf expr0 tkThen expr0 tkElse expr0
+
+caseExpr   -> tkCase expr0 tkOf tkOCB alts tkCCB
+
+lambdaExpr -> tkLambda var1 ... varn tkDOt expr0        n>=1
+
+
+expr1 -> expr2 tkOr expr1                               Logical Or
+      |  expr2
+
+expr2 -> expr3 tkAnd expr2                              Logical And
+      |  expr3
+
+expr3 -> expr4 relOp expr4                              Relational operations
+      |  expr4
+
+expr4 -> expr5 tkPlus  expr4                            Adition
+      |  expr5 tkMinus expr5                            Substraction
+      |  expr5
+
+expr5 -> expr6 tkTimes expr5                            Multiplication
+      |  expr6 tkDiv   expr6                            Division
+      |  expr6
+
+expr6 -> expr7 ... expr7                                n>=1
+
+expr7 -> var                                            Variable
+      |  num                                            Numbers
+      |  character					Chars
+      |  string						Strings
+      |  [ expr01, ... expr0n ]				n>=0  (Lists)
+      |  ( expr0, expr0 )				Tuple2
+      |  ( expr0, expr0, expr0 )			Tuple3
+      |  ( expr0 )                                      Parenthesised expression
+      
+
+defns -> defn1 ; ... ; defnn                            n>=1
+def   -> var tkEq expr0
+
+alts  -> alt1 ; ... ; altn                              n>=1
+alt   -> tkLT num tkGT var1 ... varn tkArrow expr0      n>=0
+
+
+var   -> alpha varch1 ... varchn                        n>=0
+
+alpha -> an alphabetic character
+
+digit -> 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
+
+varch -> alpha | digit | _
+
+num       -> digit1 ... digitn                              n>=1
+character -> tkApos any char tkApos
+string    -> " c1 c2 ...  cn "			            n>=0

@@ -1,0 +1,26 @@
+-- Primitives test
+
+main1 = 3+4*5;
+
+inc x = x+1;
+main2 = twice twice inc 4;
+
+
+-- Factorial
+fact n = if n==0 then 1
+                 else n *  fact (n-1);
+
+main = fact 8;
+
+-- Greatest common divisor
+
+gcd a b = if a==b 
+             then a
+             else if a<b then gcd b a 
+                         else gcd b (a-b);
+
+main4 = gcd 6 10
+
+
+
+

@@ -1,0 +1,5 @@
+f x y = x + y;
+
+g = f 3;
+
+main = g 2

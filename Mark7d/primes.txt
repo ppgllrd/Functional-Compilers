@@ -1,0 +1,35 @@
+-- La lista infinita de primos mediante
+-- la criba de Eratóstenes
+
+sum xs = if null xs then 0
+		    else (head xs) + sum (tail xs);
+
+take n xs = if (n==0 | null xs) then Nil
+                                else Cons (head xs) (take (n-1) (tail xs));
+
+filter p xs = if null xs then Nil
+			 else letrec { y          = head xs;
+				       ys         = tail xs;
+			               filterRest = filter p ys
+			      } in if p y then Cons y filterRest
+					  else filterRest;
+
+oddsFrom n = Cons n (oddsFrom (n+2));
+
+            
+nonMultiple p n = ((n/p)*p) ~= n;
+
+
+sieve xs = if null xs then Nil
+                      else let { p  = head xs;
+                                 ps = tail xs
+                           } in Cons p (sieve (filter (nonMultiple p) ps));     
+
+       
+nums = Cons 2 (oddsFrom 3);
+
+primes = sieve nums;
+
+        
+main = take 200 primes
+

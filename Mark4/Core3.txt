@@ -1,0 +1,3 @@
+f x y = y;
+id x = x;
+main = id (f 1) 4
